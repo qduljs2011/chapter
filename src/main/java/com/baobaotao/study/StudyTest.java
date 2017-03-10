@@ -33,8 +33,8 @@ public class StudyTest {
 	public void test4(){
 		ApplicationContext ac=new ClassPathXmlApplicationContext("studyservlet.xml");
 		Boss boss=ac.getBean(Boss.class);
-		List list=boss.getFavorites();
-		list.forEach(o1->System.out.println(o1));
+		List<Car> list=boss.getFavorites();
+		list.forEach(o1->System.out.println(o1.getBrand()));
 		
 	}
 	public static void main(String[] args) {

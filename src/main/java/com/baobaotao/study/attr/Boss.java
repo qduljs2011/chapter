@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Boss {
-	private List favorites=new ArrayList();
+	private List<Car> favorites=new ArrayList<>();
 
-	public List getFavorites() {
+	public List<Car> getFavorites() {
 		return favorites;
 	}
 
-	public void setFavorites(List favorites) {
+	public void setFavorites(List<Car> favorites) {
 		this.favorites = favorites;
 	}
+
+		
 	
 }

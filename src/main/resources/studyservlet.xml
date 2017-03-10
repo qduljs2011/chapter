@@ -27,10 +27,9 @@
 	<bean id="boss" class="com.baobaotao.study.attr.Boss">
 		<property name="favorites">
 			<list>
-				<ref/>
-				<value>读书</value>
-				<value>写字</value>
+				<ref bean="car"/>
 			</list>
 		</property>
 	</bean>
+	
 </beans>
