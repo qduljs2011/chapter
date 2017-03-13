@@ -15,10 +15,19 @@
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<context:component-scan base-package="com.baobaotao.dao"></context:component-scan>
 	<context:component-scan base-package="com.baobaotao.service"></context:component-scan>
+	<!--加载配置文件 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close" p:driverClassName="com.mysql.jdbc.Driver"
-		p:url="jdbc:mysql://localhost:3306/sampledb?characterEncoding=utf-8" p:username="root"
-		p:password="891212js" />
+		destroy-method="close" p:driverClassName="${driverClassName}"
+		p:url="${url}" p:username="${userName}"
+		p:password="${password}" />
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource" />
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>

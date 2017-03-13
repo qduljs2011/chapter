@@ -12,6 +12,11 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
@@ -22,13 +27,8 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.9</version>
 		</dependency>
-		<!--  spring 4 已经不需要了
-		<dependency>
-			<groupId>org.objectweb.asm</groupId>
-			<artifactId>asm</artifactId>
-			<version>3.1</version>
-		</dependency>
-		-->
+		<!-- spring 4 已经不需要了 <dependency> <groupId>org.objectweb.asm</groupId> 
+			<artifactId>asm</artifactId> <version>3.1</version> </dependency> -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -95,7 +95,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	<!-- -->
+		<!-- -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -108,7 +108,7 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-	 
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
