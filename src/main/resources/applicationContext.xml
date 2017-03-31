@@ -14,22 +14,35 @@
            http://www.springframework.org/schema/tx 
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<context:component-scan base-package="com.baobaotao.dao"></context:component-scan>
+	<context:component-scan base-package="com.baobaotao.esclient"></context:component-scan>
 	<context:component-scan base-package="com.baobaotao.service"></context:component-scan>
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<!-- 自动对有aspect注解的类进行代理. <aop:aspectj-autoproxy/> -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close" p:driverClassName="com.mysql.jdbc.Driver"
-		p:url="jdbc:mysql://localhost:3306/sampledb?characterEncoding=utf-8" p:username="root"
-		p:password="891212js" />
+		p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}">
+		<property name="testOnBorrow" value="false" />
+		<property name="testWhileIdle" value="true" />
+		<property name="validationQuery" value="select now()" />
+		<property name="timeBetweenEvictionRunsMillis" value="18000000" />
+	</bean>
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource" />
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
-	
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />
+
 	<aop:config proxy-target-class="true">
-		<aop:pointcut expression="execution(* com.baobaotao.service..*(..))" id="serviceMethod"/>
-		<aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
+		<aop:pointcut expression="execution(* com.baobaotao.service..*(..))"
+			id="serviceMethod" />
+		<aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
 	</aop:config>
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="*"/>
+			<tx:method name="save*" />
+			<tx:method name="insert*" />
+			<tx:method name="update*" />
+			<tx:method name="delete*" />
 		</tx:attributes>
 	</tx:advice>
 </beans>

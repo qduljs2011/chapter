@@ -1,7 +1,10 @@
 package com.baobaotao.study;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
+import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +14,9 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.baobaotao.study.attr.Boss;
 import com.baobaotao.study.attr.Car;
+import com.baobaotao.study.cglb.MyBeforeAdvice;
+import com.baobaotao.study.cglb.NativeWaiter;
+import com.baobaotao.study.cglb.Waiter;
 import com.baobaotao.study.conf.Beans;
 
 public class StudyTest {
@@ -37,7 +43,22 @@ public class StudyTest {
 		list.forEach(o1->System.out.println(o1.getBrand()));
 		
 	}
+	public void test5(){
+		Locale local=Locale.CHINA;
+		NumberFormat format=NumberFormat.getCurrencyInstance(local);
+		System.out.println(format.format(12.25));
+	}
+	public void test6(){
+		Waiter waiter=new NativeWaiter();
+		MyBeforeAdvice advice=new MyBeforeAdvice();
+		ProxyFactory pf=new ProxyFactory();
+		pf.addAdvice(advice);
+		pf.setTarget(waiter);
+		Waiter proWaiter=(Waiter)pf.getProxy();
+		proWaiter.greetTo("江山");
+	}
 	public static void main(String[] args) {
-		new StudyTest().test4();
+		//new StudyTest().test6();
+		//IteratorEnumeration
 	}
 }
