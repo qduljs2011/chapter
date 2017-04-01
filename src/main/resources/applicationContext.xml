@@ -18,6 +18,17 @@
 	<context:component-scan base-package="com.baobaotao.service"></context:component-scan>
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	<!-- 自动对有aspect注解的类进行代理. <aop:aspectj-autoproxy/> -->
+
+	<!--加载配置文件 
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	-->
+	<!-- 数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close" p:driverClassName="com.mysql.jdbc.Driver"
 		p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}">

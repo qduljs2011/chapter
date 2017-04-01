@@ -58,7 +58,5 @@ public class StudyTest {
 		proWaiter.greetTo("江山");
 	}
 	public static void main(String[] args) {
-		//new StudyTest().test6();
-		//IteratorEnumeration
 	}
 }
