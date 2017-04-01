@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.baobaotao.dao.ProductDao;
 import com.baobaotao.domain.Product;
 import com.baobaotao.esclient.EsService;
@@ -24,6 +25,12 @@ public class ProductService {
 		List<Product> productList=productDao.getProductLimit();
 		esService.bulkIndexProduct(productList);
 		return null;
+	}
+
+
+	public JSONArray searchProduct(String keyWord) {
+		return 	esService.searchProduct(keyWord);
+		
 	}
 	
 }	
