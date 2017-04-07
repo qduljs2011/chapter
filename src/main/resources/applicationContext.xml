@@ -14,7 +14,9 @@
            http://www.springframework.org/schema/tx 
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<context:component-scan base-package="com.baobaotao.dao"></context:component-scan>
+	<!--    没有启动es，暂时注释
 	<context:component-scan base-package="com.baobaotao.esclient"></context:component-scan>
+	-->
 	<context:component-scan base-package="com.baobaotao.service"></context:component-scan>
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	<!-- 自动对有aspect注解的类进行代理. <aop:aspectj-autoproxy/> -->
@@ -54,6 +56,7 @@
 			<tx:method name="insert*" />
 			<tx:method name="update*" />
 			<tx:method name="delete*" />
+			<tx:method name="create*"/>
 		</tx:attributes>
 	</tx:advice>
 </beans>

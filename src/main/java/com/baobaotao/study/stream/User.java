@@ -1,26 +1,18 @@
-package com.baobaotao.domain;
+package com.baobaotao.study.stream;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
+import java.util.List;
 
 public class User implements Serializable {
 	private int userId;
-	@NotNull
 	private String userName;
-	@Length(min=6)
 	private String password;
 	private int credits;
-	@NotNull
 	private String lastIp;
 	private Date lastVisit;
-	@Email
-	private String eMail;
+	private List<LoginLog> logs;
 	
 	public int getUserId() {
 		return userId;
@@ -58,17 +50,24 @@ public class User implements Serializable {
 	public void setLastVisit(Date lastVisit) {
 		this.lastVisit = lastVisit;
 	}
-	
-	public String geteMail() {
-		return eMail;
-	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", credits=" + credits
 				+ ", lastIp=" + lastIp + ", lastVisit=" + lastVisit + "]";
+	}
+	public List<LoginLog> getLogs() {
+		return logs;
+	}
+	public void setLogs(List<LoginLog> logs) {
+		this.logs = logs;
+	}
+	public void addLog(LoginLog log){
+		if(this.logs==null){
+			this.logs=new ArrayList<LoginLog>();
+			logs.add(log);
+		}else{
+			this.logs.add(log);
+		}
 	}
 	
 }

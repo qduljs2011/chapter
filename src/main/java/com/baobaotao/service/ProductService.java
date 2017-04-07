@@ -18,7 +18,7 @@ public class ProductService {
 	@Autowired
 	private ProductDao productDao;
 	
-	@Autowired
+	@Autowired(required=false)
 	private EsService esService;
 
 	public String bulkAddIndex() {

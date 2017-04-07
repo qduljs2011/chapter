@@ -33,4 +33,12 @@ public class UserService {
 		userDao.updateLoginInfo(user);
 		loginLogDao.insertLoginLog(loginLog);
 	}
+
+	public void createUser(User user) {
+		
+	}
+
+	public User findUserById(int userId) {
+		return userDao.findUserById(userId);
+	}
 }
