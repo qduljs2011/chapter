@@ -159,8 +159,7 @@ public class UserController {
 		return "userListFtl";
 	}
 	public static void main(String[] args) {
-		Object command=new LoginCommand();
-		Object c=new UserController();
-		System.out.println(command==c);
+		Object obj=null;
+		UserController c=(UserController)obj;
 	}
 }
