@@ -29,6 +29,15 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- 测试filter 估计是可能会把所有的静态资源给干掉 -->
+	<filter>
+		<filter-name>testfilter</filter-name>
+		<filter-class>com.baobaotao.filter.TestFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>testfilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<!-- The front controller of this Spring Web application, responsible for 
 		handling all application requests -->
 	<servlet>
